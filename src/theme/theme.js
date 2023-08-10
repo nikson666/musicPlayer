@@ -217,17 +217,35 @@ export const themeSettings = (mode) => {
 // context for color mode
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
+  setStoreMode: () => {},
 });
 
 export const useMode = () => {
   const [mode, setMode] = useState("dark");
+  const storeMode = window.localStorage.getItem("mode");
 
+  if (!storeMode) {
+    window.localStorage.setItem("mode", mode);
+  }
+
+  if (storeMode !== mode && storeMode) {
+    setMode(storeMode);
+  }
+
+  console.log("storeMode", storeMode);
+
+  console.log("mode", mode);
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
+      setStoreMode: () =>
+        window.localStorage.setItem(
+          "mode",
+          storeMode === "light" ? "dark" : "light"
+        ),
     }),
-    []
+    [storeMode]
   );
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);

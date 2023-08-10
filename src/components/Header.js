@@ -64,6 +64,13 @@ const Header = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const storeMode = window.localStorage.getItem("mode");
+
+  const switchBtnHandler = () => {
+    colorMode.toggleColorMode();
+    colorMode.setStoreMode();
+  };
+
   return (
     <Box
       sx={{
@@ -101,9 +108,13 @@ const Header = () => {
           </Typography>
           <Search colors={colors} />
           <FormControlLabel
-            onClick={colorMode.toggleColorMode}
+            onClick={switchBtnHandler}
             control={
-              <MaterialUISwitch colors={colors} sx={{ m: 1 }} defaultChecked />
+              <MaterialUISwitch
+                colors={colors}
+                sx={{ m: 1 }}
+                checked={storeMode === "dark" ? true : false}
+              />
             }
           />
           <AuthBtn colors={colors} />
