@@ -4,59 +4,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { styled, alpha } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
 import Switch from "@mui/material/Switch";
 import { ColorModeContext, tokens } from "../theme/theme";
 import { FormControlLabel, useTheme } from "@mui/material";
-
-const Search = styled("div")(({ theme, colors }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  color: colors.typography.main[500],
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  marginRight: 40,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
+import { AuthBtn, Search } from ".";
 
 const MaterialUISwitch = styled(Switch)(({ theme, colors }) => ({
   width: 62,
@@ -138,25 +92,21 @@ const Header = () => {
           >
             <MenuIcon sx={{ color: colors.typography.main[500] }} />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: colors.typography.main[500] }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, color: colors.typography.main[500] }}
+          >
             Spotify Clone
           </Typography>
-          <Search colors={colors}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <Search colors={colors} />
           <FormControlLabel
             onClick={colorMode.toggleColorMode}
             control={
               <MaterialUISwitch colors={colors} sx={{ m: 1 }} defaultChecked />
             }
           />
-          <Button sx={{color: colors.typography.main[500]}}>Login</Button>
+          <AuthBtn colors={colors} />
         </Toolbar>
       </AppBar>
     </Box>
