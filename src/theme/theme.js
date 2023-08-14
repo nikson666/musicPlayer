@@ -222,6 +222,17 @@ export const ColorModeContext = createContext({
 export const useMode = () => {
   const [mode, setMode] = useState("dark");
 
+<<<<<<< Updated upstream
+=======
+  if (!storeMode) {
+    window.localStorage.setItem("mode", mode);
+  }
+
+  if (storeMode !== mode && storeMode) {
+    setMode(storeMode);
+  }
+
+>>>>>>> Stashed changes
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
