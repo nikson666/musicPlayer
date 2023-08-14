@@ -17,20 +17,27 @@ const Profile = () => {
     }
   }, []);
 
-  return (
+  return images && name ? (
     <Box
       sx={{
         mt: 5,
         p: 5,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
-      >  
+    >
       <Typography variant="h3">{name}</Typography>
-      <Avatar sx={{width: `${images[1]?.width}px`, height: `${images[1]?.height}px`}} src={images[1]?.url} alt="img" />
+      <Avatar
+        sx={{
+          width: `${images[1]?.width}px`,
+          height: `${images[1]?.height}px`,
+        }}
+        src={images[1]?.url}
+        alt="img"
+      />
     </Box>
-  );
+  ) : null;
 };
 
 export default Profile;
