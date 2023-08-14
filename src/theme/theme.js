@@ -232,9 +232,6 @@ export const useMode = () => {
     setMode(storeMode);
   }
 
-  console.log("storeMode", storeMode);
-
-  console.log("mode", mode);
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
