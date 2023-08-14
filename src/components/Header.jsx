@@ -76,15 +76,12 @@ const Header = () => {
       sx={{
         flexGrow: 1,
         paddingTop: 2,
-        display: "flex",
-        justifyContent: "center",
       }}
     >
       <AppBar
         sx={{
           borderRadius: 10,
           background: "transparent",
-          maxWidth: "90%",
           backdropFilter: "brightness(0.7)",
         }}
         position="static"
