@@ -1,28 +1,19 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { getHashInfoFromURL, loginURL } from "../queries/spotify";
 
 const Auth = ({ colors }) => {
-  const CLIENT_ID = "20b0581edb28461ba06c984b0647dd71";
-  const REDIRECT_URI = "http://localhost:3000/";
-  const AUTH_ENDPOINTMENT = "http://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
-
   const [token, setToken] = useState("");
-  console.log("token", token);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    let storeToken = window.localStorage.getItem("token");
+    const storeToken = window.localStorage.getItem("token");
+    const hash = getHashInfoFromURL()
 
     if (!storeToken && hash) {
-      storeToken = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
+      const _token = hash?.access_token
       window.location.hash = "";
-      window.localStorage.setItem("token", storeToken);
-      setToken(storeToken);
+      window.localStorage.setItem("token", _token);
+      setToken(_token);
     }
 
     if (!token && storeToken) {
@@ -39,7 +30,7 @@ const Auth = ({ colors }) => {
     <>
       {!token ? (
         <Button
-          href={`${AUTH_ENDPOINTMENT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          href={loginURL}
           sx={{ color: colors.typography.main[500] }}
         >
           Login
