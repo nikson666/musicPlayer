@@ -1,9 +1,14 @@
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getHashInfoFromURL, loginURL } from "../queries/spotify";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken, setIaAuth } from "../redux/auth/slice";
+import authSelectors from "../redux/auth/selectors";
 
 const Auth = ({ colors }) => {
-  const [token, setToken] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector(authSelectors.getAuthTokenSelector)
+  const isAuth = useSelector(authSelectors.getIsAuthSelector)
 
   useEffect(() => {
     const storeToken = window.localStorage.getItem("token");
@@ -13,22 +18,26 @@ const Auth = ({ colors }) => {
       const _token = hash?.access_token
       window.location.hash = "";
       window.localStorage.setItem("token", _token);
-      setToken(_token);
+      dispatch(setToken(_token))
+      dispatch(setIaAuth(true))
     }
 
     if (!token && storeToken) {
-      setToken(storeToken);
+      dispatch(setToken(storeToken))
+      dispatch(setIaAuth(true))
     }
-  }, [token]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const logoutHandler = () => {
-    setToken("");
     window.localStorage.removeItem("token");
+    dispatch(setIaAuth(false))
+    dispatch(setToken(''))
   };
 
   return (
     <>
-      {!token ? (
+      {!isAuth ? (
         <Button
           href={loginURL}
           sx={{ color: colors.typography.main[500] }}

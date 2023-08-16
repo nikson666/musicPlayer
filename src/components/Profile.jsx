@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getMe } from "../queries/mediaQuery";
 import { Avatar, Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import authSelectors from "../redux/auth/selectors";
 
 const Profile = () => {
+  const isAuth = useSelector(authSelectors.getIsAuthSelector);
   const [name, setName] = useState("");
   const [images, setImages] = useState([]);
-  console.log("images", images);
 
   useEffect(() => {
     const storeToken = window.localStorage.getItem("token");
@@ -17,7 +19,7 @@ const Profile = () => {
     }
   }, []);
 
-  return images && name ? (
+  return isAuth ? (
     <Box
       sx={{
         mt: 5,
@@ -27,7 +29,6 @@ const Profile = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h3">{name}</Typography>
       <Avatar
         sx={{
           width: `${images[1]?.width}px`,
@@ -36,6 +37,7 @@ const Profile = () => {
         src={images[1]?.url}
         alt="img"
       />
+      <Typography variant="h3">{name}</Typography>
     </Box>
   ) : null;
 };
