@@ -15,13 +15,13 @@ const profileSclice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMeThunk.fulfilled, (state, action) => {
-        console.log(action.payload)
         // change approach to catch bugs 
-        if(action.payload.status < 300 || !action.payload.status) {
+        if(action.payload.error) {
+          return
+        }
           state.name = action.payload.display_name;
           state.smallImage = action.payload?.images[0].url;
           state.largeImage = action.payload?.images[1].url;
-        }
       })
       .addCase(getMeThunk.rejected, (state, action) => {
         console.error("Case error message", action.error.message);
