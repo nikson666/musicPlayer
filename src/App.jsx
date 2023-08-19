@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Profile } from "./components";
+import { AppBar, MyPlaylists, Profile } from "./components";
 import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme/theme";
 import { useSelector } from "react-redux";
@@ -22,7 +22,14 @@ function App() {
         >
           <Container>
             <AppBar />
-            {!isAuth ? <h1>Please Login</h1> : <Profile />}
+            {!isAuth ? (
+              <h1>Please Login</h1>
+            ) : (
+              <>
+                <Profile />
+                <MyPlaylists />
+              </>
+            )}
           </Container>
         </Box>
       </ThemeProvider>
