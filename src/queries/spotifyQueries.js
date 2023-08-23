@@ -1,4 +1,8 @@
-import { meEndpoint } from "./spotify";
+import {
+  meEndpoint,
+  myPlaylitsEndpoint,
+  myLikedTracksEndpoint,
+} from "./spotify";
 
 export const getMe = async (token) => {
   try {
@@ -17,11 +21,23 @@ export const getMe = async (token) => {
 };
 
 export const getMyPlaylists = async (token) => {
-  const res = await fetch('https://api.spotify.com/v1/me/playlists', {
+  const res = await fetch(myPlaylitsEndpoint, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "GET",
-  })
-  return await res.json()
-}
+  });
+
+  return await res.json();
+};
+
+export const getMyLikedTracks = async (token) => {
+  const res = await fetch(myLikedTracksEndpoint, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+
+  return await res.json();
+};

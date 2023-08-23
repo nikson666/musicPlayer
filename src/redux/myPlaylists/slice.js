@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const myPlaylistsSlice = createSlice({
-  name: "maPlaylists",
+  name: "myPlaylists",
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getMyPlaylistsThunk.fulfilled, (state, action) => {
