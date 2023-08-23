@@ -4,6 +4,9 @@ export const redirectUri = "http://localhost:3000/";
 // Endpoints
 export const authEndpoint = "http://accounts.spotify.com/authorize";
 export const meEndpoint = "https://api.spotify.com/v1/me"
+export const myPlaylitsEndpoint = "https://api.spotify.com/v1/me/playlists"
+export const myLikedTracksEndpoint = "https://api.spotify.com/v1/me/tracks"
+
 
 // Scopes
 export const scopes = [
@@ -12,6 +15,7 @@ export const scopes = [
   "user-read-playback-state",
   "user-modify-playback-state",
   "user-top-read",
+  "user-library-read"
 ];
 
 export const loginURL = `${authEndpoint}?client_id=${clienId}&redirect_uri=${redirectUri}&scope=${scopes.join(

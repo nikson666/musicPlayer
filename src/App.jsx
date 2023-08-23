@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, MyPlaylists, Profile } from "./components";
+import { AppBar, MyLikedTracks, MyPlaylists, Profile } from "./components";
 import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme/theme";
 import { useSelector } from "react-redux";
@@ -28,6 +28,7 @@ function App() {
               <>
                 <Profile />
                 <MyPlaylists />
+                <MyLikedTracks />
               </>
             )}
           </Container>
