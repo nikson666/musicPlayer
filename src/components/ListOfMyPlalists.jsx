@@ -31,6 +31,7 @@ const ListOfMyPlalists = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
+            <Typography variant="caption" children="My Playlists" />
       <Grid
         display="grid"
         justifyContent="space-evenly"

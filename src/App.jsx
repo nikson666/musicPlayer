@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, MyLikedTracks, MyPlaylists, Profile } from "./components";
+import { AppBar, MyLikedTracks, MyPlaylists, Player, Profile } from "./components";
 import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme/theme";
 import { useSelector } from "react-redux";
@@ -18,6 +18,7 @@ function App() {
             background: theme.palette.background.gradient,
             minHeight: "100vh",
             height: "100%",
+            pb: 20
           }}
         >
           <Container>
@@ -29,6 +30,7 @@ function App() {
                 <Profile />
                 <MyPlaylists />
                 <MyLikedTracks />
+                <Player />
               </>
             )}
           </Container>

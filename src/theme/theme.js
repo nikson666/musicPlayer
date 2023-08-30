@@ -88,6 +88,10 @@ export const tokens = (mode) => ({
             900: "#2c3031",
           },
         },
+        player: {
+          background: 'rgba(2, 0, 36, 0.5)',
+        }
+
       }
     : {
         background: {
@@ -173,6 +177,9 @@ export const tokens = (mode) => ({
             900: "#000007",
           },
         },
+        player: {
+          background: 'rgba(219, 242, 247, 0.5)'
+        }
       }),
 });
 
